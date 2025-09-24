@@ -7,22 +7,32 @@ class PresentationController {
         this.slides = document.querySelectorAll('.slide');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
-        this.slideCounter = document.getElementById('slideCounter');
+        this.slideNumbers = document.querySelectorAll('.slide-number');
         
         this.init();
     }
     
     init() {
-        this.updateSlideCounter();
+        this.updatePagination();
         this.updateNavigationButtons();
         this.bindEvents();
         this.showSlide(1);
+        // Initialize mobile pagination
+        setTimeout(() => this.updateMobilePagination(), 100);
     }
     
     bindEvents() {
         // Navigation button events
         this.prevBtn.addEventListener('click', () => this.previousSlide());
         this.nextBtn.addEventListener('click', () => this.nextSlide());
+        
+        // Pagination click events
+        this.slideNumbers.forEach(slideNumber => {
+            slideNumber.addEventListener('click', () => {
+                const slideNum = parseInt(slideNumber.dataset.slide);
+                this.goToSlide(slideNum);
+            });
+        });
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -122,7 +132,7 @@ class PresentationController {
         if (targetSlide) {
             targetSlide.classList.add('active');
             this.currentSlide = slideNumber;
-            this.updateSlideCounter();
+            this.updatePagination();
             this.updateNavigationButtons();
             
             // Trigger any slide-specific animations
@@ -148,8 +158,78 @@ class PresentationController {
         }
     }
     
-    updateSlideCounter() {
-        this.slideCounter.textContent = `${this.currentSlide} / ${this.totalSlides}`;
+    updatePagination() {
+        this.slideNumbers.forEach(slideNumber => {
+            slideNumber.classList.remove('active');
+            const slideNum = parseInt(slideNumber.dataset.slide);
+            if (slideNum === this.currentSlide) {
+                slideNumber.classList.add('active');
+            }
+        });
+        
+        // Update mobile pagination visibility
+        this.updateMobilePagination();
+    }
+    
+    updateMobilePagination() {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            // Reset all slide numbers to default display
+            this.slideNumbers.forEach(slideNumber => {
+                slideNumber.style.display = '';
+            });
+            const ellipsis = document.querySelector('.pagination-ellipsis');
+            if (ellipsis) {
+                ellipsis.style.display = 'none';
+            }
+            return;
+        }
+        
+        // Mobile pagination logic
+        const currentSlideNum = this.currentSlide;
+        const totalSlides = this.totalSlides;
+        
+        // Calculate which slides to show
+        let startSlide, endSlide;
+        
+        if (totalSlides <= 5) {
+            // Show all slides if 5 or fewer
+            startSlide = 1;
+            endSlide = totalSlides;
+        } else {
+            // Show 5 slides centered around current slide
+            startSlide = Math.max(1, currentSlideNum - 2);
+            endSlide = Math.min(totalSlides, currentSlideNum + 2);
+            
+            // Adjust if we're near the beginning or end
+            if (endSlide - startSlide < 4) {
+                if (startSlide === 1) {
+                    endSlide = Math.min(totalSlides, startSlide + 4);
+                } else if (endSlide === totalSlides) {
+                    startSlide = Math.max(1, endSlide - 4);
+                }
+            }
+        }
+        
+        // Hide all slide numbers first
+        this.slideNumbers.forEach(slideNumber => {
+            slideNumber.style.display = 'none';
+        });
+        
+        // Show the calculated range
+        for (let i = startSlide; i <= endSlide; i++) {
+            const slideNumber = document.querySelector(`[data-slide="${i}"]`);
+            if (slideNumber) {
+                slideNumber.style.display = 'flex';
+            }
+        }
+        
+        // Show ellipsis if there are hidden slides
+        const ellipsis = document.querySelector('.pagination-ellipsis');
+        if (ellipsis) {
+            const hasHiddenSlides = startSlide > 1 || endSlide < totalSlides;
+            ellipsis.style.display = hasHiddenSlides ? 'flex' : 'none';
+        }
     }
     
     updateNavigationButtons() {
@@ -410,3 +490,10 @@ document.addEventListener('keydown', (e) => {
 // Export for potential external use
 window.PresentationController = PresentationController;
 window.PresentationUtils = PresentationUtils;
+
+// Handle window resize for mobile pagination
+window.addEventListener('resize', () => {
+    if (window.presentation) {
+        window.presentation.updateMobilePagination();
+    }
+});
