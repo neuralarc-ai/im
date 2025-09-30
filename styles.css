@@ -419,6 +419,8 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .feature-card {
@@ -465,7 +467,7 @@ body {
 }
 
 .feature-card li::before {
-    content: "â€¢";
+    content: "•";
     color: #000000;
     font-weight: bold;
     position: absolute;
@@ -1206,10 +1208,15 @@ body {
     }
     
     .problem-grid,
-    .features-grid,
     .departments-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        max-width: 900px;
     }
     
     .business-model,
@@ -1278,12 +1285,17 @@ body {
     }
     
     .problem-grid,
-    .features-grid,
     .departments-grid,
     .next-steps,
     .investment-highlights {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 100%;
     }
     
     .market-stats {
@@ -1419,11 +1431,14 @@ body {
     }
     
     .problem-item,
-    .feature-card,
     .dept-card,
     .step-card,
     .highlight-card {
         padding: 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.2rem;
     }
     
     .problem-item h3,
@@ -1575,10 +1590,15 @@ body {
     }
     
     .problem-grid,
-    .features-grid,
     .departments-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        max-width: 100%;
     }
     
     .market-stats {
