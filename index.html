@@ -3,681 +3,588 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Arc Inc - Helium AI Investor Deck</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="author" content="Neural Arc">
+    <meta name="description" content="Neural Arc Investor Deck - Helium AI Platform">
+    <title>Neural Arc - Investor Deck</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="presentation-container">
-        <!-- Navigation -->
-        <nav class="slide-nav">
-            <div class="nav-controls">
-                <button id="prevBtn" class="nav-btn">‹</button>
-                <div class="pagination">
-                    <span class="slide-number" data-slide="1">1</span>
-                    <span class="slide-number" data-slide="2">2</span>
-                    <span class="slide-number" data-slide="3">3</span>
-                    <span class="slide-number" data-slide="4">4</span>
-                    <span class="slide-number" data-slide="5">5</span>
-                    <span class="slide-number" data-slide="6">6</span>
-                    <span class="slide-number" data-slide="7">7</span>
-                    <span class="slide-number" data-slide="8">8</span>
-                    <span class="slide-number" data-slide="9">9</span>
-                    <span class="slide-number" data-slide="10">10</span>
-                    <span class="slide-number" data-slide="11">11</span>
-                    <span class="slide-number" data-slide="12">12</span>
-                    <span class="slide-number" data-slide="13">13</span>
-                    <span class="slide-number" data-slide="14">14</span>
-                    <span class="pagination-ellipsis mobile-only">...</span>
+        <!-- Slide 1: Cover -->
+        <section class="slide slide-cover" id="slide-1">
+            <div class="slide-content">
+                <div class="logo-container">
+                    <img src="../Neural Arc logo black.png" alt="Neural Arc" class="logo">
                 </div>
-                <button id="nextBtn" class="nav-btn">›</button>
-            </div>
-        </nav>
-
-        <!-- Slide 1: Title -->
-        <section class="slide active" id="slide-1">
-            <div class="slide-content title-slide">
-                <div class="logo-section">
-                    <div class="company-logo">
-                        <img src="Neural Arc logomark black.png" alt="Neural Arc Logo" class="logo-icon">
-                        <h1>Neural Arc Inc</h1>
+                <h1 class="title-main">The Future of<br>AI Orchestration</h1>
+                <div class="tagline">Helium AI: Where Intelligence Meets Memory</div>
+                
+                <div class="cover-metrics">
+                    <div class="metric-box">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">Enterprise Pilots</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">10+</div>
+                        <div class="metric-label">Mid-Size Businesses</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">123</div>
+                        <div class="metric-label">Waitlist Companies</div>
                     </div>
                 </div>
-                <div class="title-content">
-                    <h2 class="main-title">Helium AI</h2>
-                    <p class="subtitle">Autonomous Enterprise AI Platform</p>
-                    <div class="funding-info">
-                        <h3>Pre-Seed Funding: $2M USD</h3>
+                
+                <div class="funding-highlight">
+                    <div class="funding-text">
+                        <span class="raising">Raising $2M USD</span>
+                        <span class="committed">$500K Committed</span>
                     </div>
-                </div>
-                <div class="footer-info">
-                    <p>Confidential & Proprietary • September 2025</p>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 2: Problem Statement -->
+        <!-- Slide 2: The Problem -->
         <section class="slide" id="slide-2">
             <div class="slide-content">
-                <h2 class="slide-title">The Enterprise AI Challenge</h2>
-                <div class="problem-grid">
+                <div class="slide-header">
+                    <h2 class="slide-title">The AI Agent Paradox</h2>
+                    <div class="slide-subtitle">Current solutions lack persistent intelligence</div>
+                </div>
+                
+                <div class="problem-container">
                     <div class="problem-item">
-                        <div class="problem-icon">⚠</div>
-                        <h3>Manual Process Inefficiencies</h3>
-                        <p>Enterprises waste 40% of employee time on repetitive tasks that could be automated</p>
+                        <div class="problem-icon">
+                            <i data-lucide="brain"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h3>Context Amnesia</h3>
+                            <p>Agents forget everything between sessions</p>
+                        </div>
                     </div>
+                    
                     <div class="problem-item">
-                        <div class="problem-icon">🔧</div>
-                        <h3>Fragmented AI Tools</h3>
-                        <p>Current solutions require technical expertise and offer only chat assistance, not full automation</p>
+                        <div class="problem-icon">
+                            <i data-lucide="alert-triangle"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h3>Accuracy Degradation</h3>
+                            <p>Cannot learn from past interactions</p>
+                        </div>
                     </div>
+                    
                     <div class="problem-item">
-                        <div class="problem-icon">🔒</div>
-                        <h3>Security & Compliance Concerns</h3>
-                        <p>Cloud-only AI solutions create data sovereignty and compliance challenges for enterprises</p>
+                        <div class="problem-icon">
+                            <i data-lucide="workflow"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h3>Workflow Fragmentation</h3>
+                            <p>Disconnected tools without knowledge sharing</p>
+                        </div>
                     </div>
+                    
                     <div class="problem-item">
-                        <div class="problem-icon">🤖</div>
-                        <h3>Limited Autonomous Capabilities</h3>
-                        <p>Existing platforms provide partial automation but lack true autonomous task execution</p>
+                        <div class="problem-icon">
+                            <i data-lucide="dollar-sign"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h3>ROI Uncertainty</h3>
+                            <p>88% of enterprises struggle to measure value</p>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="market-stat">
+                    <div class="stat-number">$7.9B</div>
+                    <div class="stat-text">2025 Market Size | 45.8% CAGR | Growing to $50B by 2030</div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 3: Market Opportunity -->
-        <section class="slide" id="slide-3">
+        <!-- Slide 3: The Solution -->
+        <section class="slide slide-solution" id="slide-3">
             <div class="slide-content">
-                <h2 class="slide-title">Massive Market Opportunity</h2>
-                <div class="market-stats">
-                    <div class="stat-card primary">
-                        <h3>$23.95B</h3>
-                        <p>Enterprise AI Market 2024</p>
-                        <span class="growth">→ $155.2B by 2030</span>
+                <div class="slide-header">
+                    <h2 class="slide-title">Helium AI: Intelligence That Remembers</h2>
+                    <div class="slide-subtitle">Powered by Adaptive Intelligence Memory (AIM)</div>
+                </div>
+                
+                <div class="aim-hero">
+                    <div class="aim-badge">
+                        <i data-lucide="sparkles"></i>
+                        <span>AIM Technology</span>
                     </div>
-                    <div class="stat-card">
-                        <h3>37.6%</h3>
-                        <p>Market CAGR</p>
+                    <p class="aim-tagline">The world's first AI orchestration platform with persistent, evolving memory</p>
+                </div>
+                
+                <div class="features-container">
+                    <div class="feature-box">
+                        <div class="feature-header">
+                            <i data-lucide="database"></i>
+                            <h3>Persistent Context</h3>
+                        </div>
+                        <p>Stores project history, preferences, and domain knowledge across all sessions</p>
                     </div>
-                    <div class="stat-card">
-                        <h3>$52.6B</h3>
-                        <p>Autonomous Agents Market by 2030</p>
+                    
+                    <div class="feature-box">
+                        <div class="feature-header">
+                            <i data-lucide="trending-up"></i>
+                            <h3>Continuous Learning</h3>
+                        </div>
+                        <p>67% accuracy improvement through adaptive learning from every interaction</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-header">
+                            <i data-lucide="layers"></i>
+                            <h3>Full-Stack Orchestration</h3>
+                        </div>
+                        <p>Execute complex workflows across web, code, data, and systems autonomously</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-header">
+                            <i data-lucide="shield-check"></i>
+                            <h3>Enterprise-Grade Security</h3>
+                        </div>
+                        <p>User-isolated memory, SOC 2 compliance, granular access controls</p>
                     </div>
                 </div>
-                <div class="adoption-stats">
-                    <div class="adoption-item">
-                        <div class="percentage">78%</div>
-                        <p>Organizations use AI in at least one business function</p>
-                    </div>
-                    <div class="adoption-item">
-                        <div class="percentage">71%</div>
-                        <p>Organizations regularly use generative AI</p>
-                    </div>
-                    <div class="adoption-item">
-                        <div class="percentage">15%</div>
-                        <p>Work decisions will be autonomous by 2028 (Gartner)</p>
-                    </div>
+                
+                <div class="key-differentiator">
+                    <i data-lucide="star"></i>
+                    <span>While competitors offer stateless agents, Helium AI delivers stateful intelligence that compounds value over time</span>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 4: Solution Overview -->
+        <!-- Slide 4: Competitive Analysis -->
         <section class="slide" id="slide-4">
             <div class="slide-content">
-                <h2 class="slide-title">Helium AI: The Complete Solution</h2>
-                <div class="solution-overview">
-                    <div class="solution-main">
-                        <div class="solution-icon">🚀</div>
-                        <h3>Autonomous Multi-Agent Platform</h3>
-                        <p>Full task automation with intelligent agents that work independently to complete complex workflows</p>
+                <div class="slide-header">
+                    <h2 class="slide-title">Competitive Positioning</h2>
+                    <div class="slide-subtitle">Clear differentiation in the AI agents market</div>
+                </div>
+                
+                <div class="comparison-matrix">
+                    <div class="matrix-row header-row">
+                        <div class="matrix-cell"></div>
+                        <div class="matrix-cell highlight-cell">Helium AI</div>
+                        <div class="matrix-cell">GenSpark</div>
+                        <div class="matrix-cell">Abacus AI</div>
+                        <div class="matrix-cell">Manus AI</div>
                     </div>
-                    <div class="solution-features">
-                        <div class="feature-item">
-                            <span class="feature-icon">🏢</span>
-                            <div>
-                                <h4>On-Premises Deployment</h4>
-                                <p>Unique capability for enterprise security and compliance</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🎯</span>
-                            <div>
-                                <h4>No-Code Interface</h4>
-                                <p>Drag-and-drop workflow builder accessible to all users</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🔗</span>
-                            <div>
-                                <h4>200+ Integrations</h4>
-                                <p>Seamless connectivity with existing enterprise systems</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">⚡</span>
-                            <div>
-                                <h4>Full Automation</h4>
-                                <p>Beyond chat assistance - complete autonomous task execution</p>
-                            </div>
-                        </div>
+                    
+                    <div class="matrix-row">
+                        <div class="matrix-cell feature-cell">Persistent Memory (AIM)</div>
+                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
+                    </div>
+                    
+                    <div class="matrix-row">
+                        <div class="matrix-cell feature-cell">Continuous Learning</div>
+                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
+                    </div>
+                    
+                    <div class="matrix-row">
+                        <div class="matrix-cell feature-cell">Full Orchestration</div>
+                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
+                    </div>
+                    
+                    <div class="matrix-row">
+                        <div class="matrix-cell feature-cell">Enterprise Ready</div>
+                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
+                    </div>
+                    
+                    <div class="matrix-row">
+                        <div class="matrix-cell feature-cell">Flexible Pricing</div>
+                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
+                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
+                    </div>
+                </div>
+                
+                <div class="swot-container">
+                    <div class="swot-box strengths">
+                        <h4><i data-lucide="award"></i> Strengths</h4>
+                        <ul>
+                            <li>Unique AIM technology - only persistent memory solution</li>
+                            <li>Strong enterprise traction with Fortune 500 pilots</li>
+                            <li>Full-stack capabilities across all domains</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4><i data-lucide="trending-up"></i> Opportunities</h4>
+                        <ul>
+                            <li>$50B market by 2030 with 45.8% CAGR</li>
+                            <li>85% enterprise adoption expected by end of 2025</li>
+                            <li>First-mover advantage in memory-enabled AI</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 5: Platform Features -->
+        <!-- Slide 5: Business Model -->
         <section class="slide" id="slide-5">
             <div class="slide-content">
-                <h2 class="slide-title">Platform Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <span class="feature-icon">📚</span>
-                            <h3>Knowledge Base & Integrations</h3>
+                <div class="slide-header">
+                    <h2 class="slide-title">Revenue Model</h2>
+                    <div class="slide-subtitle">Dual-stream approach for B2B and B2C markets</div>
+                </div>
+                
+                <div class="revenue-grid">
+                    <div class="revenue-column b2b">
+                        <div class="column-header">
+                            <i data-lucide="building-2"></i>
+                            <h3>B2B Enterprise</h3>
                         </div>
-                        <ul>
-                            <li>200+ app integrations</li>
-                            <li>Custom knowledge sources</li>
-                            <li>Real-time data synchronization</li>
-                            <li>Contextual intelligence</li>
-                        </ul>
+                        <div class="pricing-tiers">
+                            <div class="tier-item">
+                                <div class="tier-name">Setup Fee</div>
+                                <div class="tier-price">$5K - $50K</div>
+                                <div class="tier-desc">Implementation & integration</div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-name">PAYG Credits</div>
+                                <div class="tier-price">$0.01 - $0.10</div>
+                                <div class="tier-desc">Per credit consumption</div>
+                            </div>
+                        </div>
+                        <div class="target-info">
+                            <div class="info-row">
+                                <span class="info-label">Target:</span>
+                                <span class="info-value">Fortune 500, Mid-Market</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">ACV:</span>
+                                <span class="info-value">$50K - $500K</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <span class="feature-icon">🤖</span>
-                            <h3>Independent Agent Creation</h3>
+                    
+                    <div class="revenue-column b2c">
+                        <div class="column-header">
+                            <i data-lucide="users"></i>
+                            <h3>B2C Professional</h3>
                         </div>
-                        <ul>
-                            <li>No-code agent builder</li>
-                            <li>Multi-agent orchestration</li>
-                            <li>Task-specific specialization</li>
-                            <li>Continuous learning capabilities</li>
-                        </ul>
+                        <div class="pricing-tiers">
+                            <div class="tier-item">
+                                <div class="tier-name">Subscription</div>
+                                <div class="tier-price">$19 - $199/mo</div>
+                                <div class="tier-desc">Monthly or annual plans</div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-name">Add-On Credits</div>
+                                <div class="tier-price">$10 - $100</div>
+                                <div class="tier-desc">Credit packs for power users</div>
+                            </div>
+                        </div>
+                        <div class="target-info">
+                            <div class="info-row">
+                                <span class="info-label">Target:</span>
+                                <span class="info-value">Developers, Creators</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">LTV:</span>
+                                <span class="info-value">$500 - $2,400</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <span class="feature-icon">🔍</span>
-                            <h3>Deep Research & Chat Modes</h3>
+                </div>
+                
+                <div class="projection-section">
+                    <h4>3-Year Revenue Projection</h4>
+                    <div class="projection-chart">
+                        <div class="chart-bar">
+                            <div class="bar-label">Year 1</div>
+                            <div class="bar-visual" style="width: 8%">
+                                <span class="bar-value">$2M</span>
+                            </div>
                         </div>
-                        <ul>
-                            <li>Autonomous research capabilities</li>
-                            <li>Interactive chat interface</li>
-                            <li>Context preservation</li>
-                            <li>Intelligent query routing</li>
-                        </ul>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <span class="feature-icon">📄</span>
-                            <h3>Multi-Format Output</h3>
+                        <div class="chart-bar">
+                            <div class="bar-label">Year 2</div>
+                            <div class="bar-visual" style="width: 32%">
+                                <span class="bar-value">$8M</span>
+                            </div>
                         </div>
-                        <ul>
-                            <li>Word, Excel, PowerPoint</li>
-                            <li>HTML, Next.js applications</li>
-                            <li>JSON, CSV, XML formats</li>
-                            <li>Charts and visualizations</li>
-                        </ul>
+                        <div class="chart-bar">
+                            <div class="bar-label">Year 3</div>
+                            <div class="bar-visual" style="width: 100%">
+                                <span class="bar-value">$25M</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 6: Use Cases by Department -->
+        <!-- Slide 6: Traction -->
         <section class="slide" id="slide-6">
             <div class="slide-content">
-                <h2 class="slide-title">Enterprise Use Cases</h2>
-                <div class="departments-grid">
-                    <div class="dept-card">
-                        <div class="dept-icon">👥</div>
-                        <h3>HR</h3>
-                        <p>Recruitment automation, onboarding, policy management</p>
+                <div class="slide-header">
+                    <h2 class="slide-title">Market Traction</h2>
+                    <div class="slide-subtitle">Strong validation from enterprise customers</div>
+                </div>
+                
+                <div class="status-badge">
+                    <i data-lucide="rocket"></i>
+                    <span>Late Beta - Ready for Launch</span>
+                </div>
+                
+                <div class="traction-grid">
+                    <div class="traction-card">
+                        <div class="traction-number">3</div>
+                        <div class="traction-label">Enterprise Pilots</div>
+                        <div class="traction-detail">Fortune 500 & Large Enterprises</div>
                     </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">⚖️</div>
-                        <h3>Legal</h3>
-                        <p>Contract analysis, compliance monitoring, document review</p>
+                    
+                    <div class="traction-card">
+                        <div class="traction-number">10+</div>
+                        <div class="traction-label">Mid-Size Businesses</div>
+                        <div class="traction-detail">Active Beta Users</div>
                     </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">💰</div>
-                        <h3>Finance</h3>
-                        <p>Financial reporting, budget analysis, audit preparation</p>
+                    
+                    <div class="traction-card">
+                        <div class="traction-number">123</div>
+                        <div class="traction-label">Waitlist Companies</div>
+                        <div class="traction-detail">Strong Demand Signal</div>
                     </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">📊</div>
-                        <h3>Accounting</h3>
-                        <p>Invoice processing, reconciliation, expense management</p>
-                    </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">📈</div>
-                        <h3>Sales</h3>
-                        <p>Lead qualification, proposal generation, CRM automation</p>
-                    </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">📢</div>
-                        <h3>Marketing</h3>
-                        <p>Campaign creation, content generation, market research</p>
-                    </div>
-                    <div class="dept-card">
-                        <div class="dept-icon">🎯</div>
-                        <h3>CXOs</h3>
-                        <p>Strategic analysis, board reporting, competitive intelligence</p>
+                    
+                    <div class="traction-card highlight">
+                        <div class="traction-number">67%</div>
+                        <div class="traction-label">Accuracy Improvement</div>
+                        <div class="traction-detail">With AIM Technology</div>
                     </div>
                 </div>
-                <div class="use-case-impact">
-                    <h4>Business Impact Across Departments</h4>
-                    <div class="impact-stats">
-                        <span>60-90% automation of routine tasks</span>
-                        <span>50-75% reduction in processing time</span>
-                        <span>Enhanced accuracy and compliance</span>
+                
+                <div class="testimonial-box">
+                    <i data-lucide="quote"></i>
+                    <p>"Helium AI's memory capability is a game-changer. Our team's productivity increased by 40% in the first month."</p>
+                    <span>— Enterprise Pilot Customer</span>
+                </div>
+                
+                <div class="market-timing-box">
+                    <div class="timing-stat">
+                        <div class="timing-value">$7.9B</div>
+                        <div class="timing-label">2025 Market</div>
+                    </div>
+                    <div class="timing-stat">
+                        <div class="timing-value">45.8%</div>
+                        <div class="timing-label">Annual Growth</div>
+                    </div>
+                    <div class="timing-stat">
+                        <div class="timing-value">85%</div>
+                        <div class="timing-label">Enterprise Adoption</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 7: Competitive Analysis -->
+        <!-- Slide 7: Use of Funds -->
         <section class="slide" id="slide-7">
             <div class="slide-content">
-                <h2 class="slide-title">Competitive Landscape</h2>
-                <div class="competitive-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th class="helium-col">Helium AI</th>
-                                <th>GenSpark</th>
-                                <th>Abacus AI</th>
-                                <th>OpenAI Pro</th>
-                                <th>Claude Pro</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Autonomous Task Execution</td>
-                                <td class="helium-col">✓ Full Automation</td>
-                                <td>✓ Advanced</td>
-                                <td>⚠ Limited</td>
-                                <td>✗ Chat Only</td>
-                                <td>✗ Partial</td>
-                            </tr>
-                            <tr>
-                                <td>On-Premises Deployment</td>
-                                <td class="helium-col">✓ Unique</td>
-                                <td>✗ Cloud Only</td>
-                                <td>✗ Cloud Only</td>
-                                <td>✗ Cloud Only</td>
-                                <td>✗ Cloud Only</td>
-                            </tr>
-                            <tr>
-                                <td>Enterprise Integrations</td>
-                                <td class="helium-col">✓ 200+</td>
-                                <td>⚠ Limited</td>
-                                <td>⚠ Basic</td>
-                                <td>⚠ Growing</td>
-                                <td>⚠ Some</td>
-                            </tr>
-                            <tr>
-                                <td>Pricing (Monthly)</td>
-                                <td class="helium-col">Competitive</td>
-                                <td>~$200</td>
-                                <td>$10+</td>
-                                <td>$200</td>
-                                <td>$200</td>
-                            </tr>
-                            <tr>
-                                <td>Enterprise Focus</td>
-                                <td class="helium-col">✓ B2B/B2E</td>
-                                <td>⚠ SMB</td>
-                                <td>⚠ Budget</td>
-                                <td>⚠ General</td>
-                                <td>⚠ General</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="slide-header">
+                    <h2 class="slide-title">Use of Funds</h2>
+                    <div class="slide-subtitle">Strategic allocation for rapid growth</div>
                 </div>
-                <div class="competitive-advantage">
-                    <h4>Key Differentiators</h4>
-                    <div class="advantages">
-                        <span>🏢 Only on-premises solution</span>
-                        <span>🤖 True autonomous execution</span>
-                        <span>🎯 Enterprise-first approach</span>
-                        <span>🔗 Comprehensive integrations</span>
+                
+                <div class="funding-summary">
+                    <div class="funding-stat">
+                        <div class="stat-label">Raising</div>
+                        <div class="stat-value">$2M USD</div>
+                    </div>
+                    <div class="funding-stat committed">
+                        <div class="stat-label">Committed</div>
+                        <div class="stat-value">$500K</div>
+                    </div>
+                </div>
+                
+                <div class="allocation-container">
+                    <div class="allocation-item">
+                        <div class="allocation-header">
+                            <div class="allocation-title">
+                                <i data-lucide="code"></i>
+                                <span>Product Development</span>
+                            </div>
+                            <div class="allocation-percent">40%</div>
+                        </div>
+                        <div class="allocation-amount">$800K</div>
+                        <ul class="allocation-list">
+                            <li>AIM technology enhancement</li>
+                            <li>Enterprise features & security</li>
+                            <li>API ecosystem expansion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="allocation-item">
+                        <div class="allocation-header">
+                            <div class="allocation-title">
+                                <i data-lucide="megaphone"></i>
+                                <span>Sales & Marketing</span>
+                            </div>
+                            <div class="allocation-percent">30%</div>
+                        </div>
+                        <div class="allocation-amount">$600K</div>
+                        <ul class="allocation-list">
+                            <li>Enterprise sales team</li>
+                            <li>Marketing campaigns</li>
+                            <li>Customer success & partnerships</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="allocation-item">
+                        <div class="allocation-header">
+                            <div class="allocation-title">
+                                <i data-lucide="users"></i>
+                                <span>Team Expansion</span>
+                            </div>
+                            <div class="allocation-percent">20%</div>
+                        </div>
+                        <div class="allocation-amount">$400K</div>
+                        <ul class="allocation-list">
+                            <li>Engineering & sales hires</li>
+                            <li>Customer support team</li>
+                            <li>Operations expansion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="allocation-item">
+                        <div class="allocation-header">
+                            <div class="allocation-title">
+                                <i data-lucide="settings"></i>
+                                <span>Operations</span>
+                            </div>
+                            <div class="allocation-percent">10%</div>
+                        </div>
+                        <div class="allocation-amount">$200K</div>
+                        <ul class="allocation-list">
+                            <li>Infrastructure scaling</li>
+                            <li>Legal & compliance</li>
+                            <li>Working capital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="milestones-section">
+                    <h4><i data-lucide="flag"></i> 18-Month Milestones</h4>
+                    <div class="milestone-grid">
+                        <div class="milestone-item">
+                            <div class="milestone-quarter">Q1 2025</div>
+                            <div class="milestone-goal">Public launch + 50 customers</div>
+                        </div>
+                        <div class="milestone-item">
+                            <div class="milestone-quarter">Q2 2025</div>
+                            <div class="milestone-goal">$500K ARR + 10 enterprise</div>
+                        </div>
+                        <div class="milestone-item">
+                            <div class="milestone-quarter">Q3 2025</div>
+                            <div class="milestone-goal">$1.5M ARR + Series A ready</div>
+                        </div>
+                        <div class="milestone-item">
+                            <div class="milestone-quarter">Q4 2025</div>
+                            <div class="milestone-goal">$3M ARR + Market leader</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 8: Business Model -->
-        <section class="slide" id="slide-8">
+        <!-- Slide 8: Closing -->
+        <section class="slide slide-closing" id="slide-8">
             <div class="slide-content">
-                <h2 class="slide-title">Business Model & Revenue Streams</h2>
-                <div class="business-model">
-                    <div class="model-section">
-                        <h3>Pricing Strategy</h3>
-                        <div class="pricing-tiers">
-                            <div class="tier">
-                                <h4>Subscription Tiers</h4>
-                                <p>Monthly/Annual recurring revenue with scalable user-based pricing</p>
-                            </div>
-                            <div class="tier">
-                                <h4>Credit-Based Usage</h4>
-                                <p>Pay-per-use model for compute-intensive tasks and integrations</p>
-                            </div>
-                            <div class="tier premium">
-                                <h4>On-Premises Premium</h4>
-                                <p>Enterprise deployment with premium support and customization</p>
-                            </div>
-                        </div>
+                <div class="closing-header">
+                    <i data-lucide="sparkles"></i>
+                    <h2>Join Us in Building the Future of AI</h2>
+                    <p class="closing-tagline">Where every interaction makes AI smarter</p>
+                </div>
+                
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <i data-lucide="trophy"></i>
+                        <h4>First-Mover Advantage</h4>
+                        <p>Only AI platform with persistent memory</p>
                     </div>
-                    <div class="target-market">
-                        <h3>Target Market</h3>
-                        <div class="market-segments">
-                            <div class="segment">
-                                <div class="segment-icon">🏢</div>
-                                <h4>B2B Enterprises</h4>
-                                <p>Mid to large enterprises seeking automation and efficiency</p>
-                            </div>
-                            <div class="segment">
-                                <div class="segment-icon">🏛️</div>
-                                <h4>B2E Organizations</h4>
-                                <p>Government and regulated industries requiring on-premises solutions</p>
-                            </div>
-                        </div>
+                    <div class="highlight-item">
+                        <i data-lucide="trending-up"></i>
+                        <h4>Massive Market</h4>
+                        <p>$50B opportunity by 2030</p>
                     </div>
-                    <div class="revenue-model">
-                        <h3>Revenue Projections</h3>
-                        <div class="revenue-chart">
-                            <div class="year-projection">
-                                <span class="year">Year 1</span>
-                                <span class="amount">$500K</span>
-                            </div>
-                            <div class="year-projection">
-                                <span class="year">Year 2</span>
-                                <span class="amount">$2.5M</span>
-                            </div>
-                            <div class="year-projection">
-                                <span class="year">Year 3</span>
-                                <span class="amount">$8M</span>
-                            </div>
-                            <div class="year-projection">
-                                <span class="year">Year 4</span>
-                                <span class="amount">$20M</span>
-                            </div>
-                            <div class="year-projection">
-                                <span class="year">Year 5</span>
-                                <span class="amount">$45M</span>
-                            </div>
+                    <div class="highlight-item">
+                        <i data-lucide="check-circle"></i>
+                        <h4>Proven Traction</h4>
+                        <p>3 pilots, 123 waitlisted</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i data-lucide="zap"></i>
+                        <h4>Clear Path to Scale</h4>
+                        <p>$2M to $25M ARR in 36 months</p>
+                    </div>
+                </div>
+                
+                <div class="investment-box">
+                    <h3>Investment Opportunity</h3>
+                    <div class="investment-details">
+                        <div class="investment-item">
+                            <div class="investment-label">Raising</div>
+                            <div class="investment-value">$2M USD</div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-label">Committed</div>
+                            <div class="investment-value">$500K</div>
+                        </div>
+                        <div class="investment-item">
+                            <div class="investment-label">Available</div>
+                            <div class="investment-value">$1.5M</div>
                         </div>
                     </div>
                 </div>
+                
+                <div class="contact-section">
+                    <h4>Let's Connect</h4>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <span>investors@neuralarc.ai</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="globe"></i>
+                            <span>neuralarc.ai</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-logo-container">
+                    <img src="../Neural Arc logo black.png" alt="Neural Arc" class="footer-logo">
+                </div>
             </div>
         </section>
+    </div>
 
-        <!-- Slide 9: Go-to-Market Strategy -->
-        <section class="slide" id="slide-9">
-            <div class="slide-content">
-                <h2 class="slide-title">Go-to-Market Strategy</h2>
-                <div class="gtm-strategy">
-                    <div class="strategy-phase">
-                        <h3>Phase 1: Foundation (Months 1-6)</h3>
-                        <div class="phase-items">
-                            <div class="phase-item">
-                                <span class="phase-icon">🎯</span>
-                                <div>
-                                    <h4>Direct Enterprise Sales</h4>
-                                    <p>Target Fortune 1000 companies with dedicated sales team</p>
-                                </div>
-                            </div>
-                            <div class="phase-item">
-                                <span class="phase-icon">🤝</span>
-                                <div>
-                                    <h4>Strategic Partnerships</h4>
-                                    <p>Partner with system integrators and consulting firms</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="strategy-phase">
-                        <h3>Phase 2: Expansion (Months 7-18)</h3>
-                        <div class="phase-items">
-                            <div class="phase-item">
-                                <span class="phase-icon">🏭</span>
-                                <div>
-                                    <h4>Industry Verticals</h4>
-                                    <p>Develop specialized solutions for finance, healthcare, legal</p>
-                                </div>
-                            </div>
-                            <div class="phase-item">
-                                <span class="phase-icon">🌍</span>
-                                <div>
-                                    <h4>Geographic Expansion</h4>
-                                    <p>Enter European and APAC markets with local partnerships</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="strategy-phase">
-                        <h3>Phase 3: Scale (Months 19+)</h3>
-                        <div class="phase-items">
-                            <div class="phase-item">
-                                <span class="phase-icon">🏪</span>
-                                <div>
-                                    <h4>Channel Partners</h4>
-                                    <p>Build reseller network and marketplace presence</p>
-                                </div>
-                            </div>
-                            <div class="phase-item">
-                                <span class="phase-icon">🚀</span>
-                                <div>
-                                    <h4>Platform Ecosystem</h4>
-                                    <p>Enable third-party developers and integrations</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 10: Traction & Validation -->
-        <section class="slide" id="slide-10">
-            <div class="slide-content">
-                <h2 class="slide-title">Market Traction & Validation</h2>
-                <div class="traction-metrics">
-                    <div class="metric-card">
-                        <h3>Early Adopters</h3>
-                        <div class="metric-value">15+</div>
-                        <p>Enterprise pilot customers across industries</p>
-                    </div>
-                    <div class="metric-card">
-                        <h3>User Engagement</h3>
-                        <div class="metric-value">85%</div>
-                        <p>Monthly active user retention rate</p>
-                    </div>
-                    <div class="metric-card">
-                        <h3>Task Automation</h3>
-                        <div class="metric-value">70%</div>
-                        <p>Average reduction in manual processing time</p>
-                    </div>
-                </div>
-                <div class="validation-points">
-                    <h3>Key Validation Metrics</h3>
-                    <div class="validation-grid">
-                        <div class="validation-item">
-                            <span class="validation-icon">✓</span>
-                            <p>Proven ROI of 300%+ within 6 months for pilot customers</p>
-                        </div>
-                        <div class="validation-item">
-                            <span class="validation-icon">✓</span>
-                            <p>Strong product-market fit evidenced by customer renewals</p>
-                        </div>
-                        <div class="validation-item">
-                            <span class="validation-icon">✓</span>
-                            <p>Growing pipeline of enterprise prospects</p>
-                        </div>
-                        <div class="validation-item">
-                            <span class="validation-icon">✓</span>
-                            <p>Positive feedback on unique on-premises capability</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 11: Financial Projections -->
-        <section class="slide" id="slide-11">
-            <div class="slide-content">
-                <h2 class="slide-title">Financial Projections</h2>
-                <div class="financial-overview">
-                    <div class="projection-chart">
-                        <h3>5-Year Revenue Forecast</h3>
-                        <div class="chart-container">
-                            <div class="revenue-bars">
-                                <div class="bar" style="height: 10%">
-                                    <span class="bar-value">$0.5M</span>
-                                    <span class="bar-year">2025</span>
-                                </div>
-                                <div class="bar" style="height: 25%">
-                                    <span class="bar-value">$2.5M</span>
-                                    <span class="bar-year">2026</span>
-                                </div>
-                                <div class="bar" style="height: 50%">
-                                    <span class="bar-value">$8M</span>
-                                    <span class="bar-year">2027</span>
-                                </div>
-                                <div class="bar" style="height: 75%">
-                                    <span class="bar-value">$20M</span>
-                                    <span class="bar-year">2028</span>
-                                </div>
-                                <div class="bar" style="height: 100%">
-                                    <span class="bar-value">$45M</span>
-                                    <span class="bar-year">2029</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="key-metrics">
-                        <h3>Key Financial Metrics</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <h4>Gross Margin</h4>
-                                <span>85%+</span>
-                            </div>
-                            <div class="metric">
-                                <h4>CAC Payback</h4>
-                                <span>12 months</span>
-                            </div>
-                            <div class="metric">
-                                <h4>LTV/CAC Ratio</h4>
-                                <span>5:1</span>
-                            </div>
-                            <div class="metric">
-                                <h4>Net Revenue Retention</h4>
-                                <span>120%+</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 12: Investment Highlights -->
-        <section class="slide" id="slide-12">
-            <div class="slide-content">
-                <h2 class="slide-title">Investment Highlights</h2>
-                <div class="investment-highlights">
-                    <div class="highlight-card primary">
-                        <div class="highlight-icon">🏢</div>
-                        <h3>Unique Market Position</h3>
-                        <p>Only enterprise AI platform offering on-premises deployment with full autonomous capabilities</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">📈</div>
-                        <h3>Large Addressable Market</h3>
-                        <p>$155B+ enterprise AI market by 2030 with 37.6% CAGR growth trajectory</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🎯</div>
-                        <h3>Strong Competitive Moat</h3>
-                        <p>Technical complexity and enterprise requirements create defensible market position</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🚀</div>
-                        <h3>Proven Traction</h3>
-                        <p>Early customer validation with strong ROI metrics and growing enterprise pipeline</p>
-                    </div>
-                </div>
-                <div class="investment-summary">
-                    <h3>Why Invest Now?</h3>
-                    <div class="summary-points">
-                        <p>• First-mover advantage in on-premises autonomous AI</p>
-                        <p>• Massive market opportunity with strong tailwinds</p>
-                        <p>• Defensible technology and business model</p>
-                        <p>• Clear path to profitability and scale</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 13: Next Steps -->
-        <section class="slide" id="slide-13">
-            <div class="slide-content">
-                <h2 class="slide-title">Next Steps</h2>
-                <div class="next-steps">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h3>Schedule Demo</h3>
-                        <p>Experience Helium AI's autonomous capabilities firsthand with a personalized demonstration</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h3>Investment Decision</h3>
-                        <p>Join us in revolutionizing enterprise AI automation and capturing this massive market opportunity</p>
-                    </div>
-                </div>
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-details">
-                        <p><strong>Neural Arc Inc</strong></p>
-                        <p>Email: investors@neuralarc.ai</p>
-                        <p>Website: he2.ai</p>
-                        <p>LinkedIn: /company/neuralarc</p>
-                    </div>
-                </div>
-                <div class="cta">
-                    <h3>Ready to Transform Enterprise AI?</h3>
-                    <p>Let's discuss how Helium AI can revolutionize your organization's automation capabilities</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 14: Thank You -->
-        <section class="slide" id="slide-14">
-            <div class="slide-content thank-you-slide">
-                <div class="thank-you-content">
-                    <div class="thank-you-icon">
-                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="60" cy="60" r="60" fill="#000000"/>
-                            <path d="M40 60L50 70L80 40" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h1 class="thank-you-title">Thank You</h1>
-                    <p class="thank-you-subtitle">We appreciate your time and consideration</p>
-                    <div class="thank-you-message">
-                        <p>Thank you for taking the time to review our presentation. We look forward to discussing how Neural Arc Inc can transform your organization's AI capabilities.</p>
-                    </div>
-                    <div class="final-contact">
-                        <p><strong>Neural Arc Inc</strong></p>
-                        <p>investors@neuralarc.ai</p>
-                        <p>he2.ai</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" aria-label="Previous slide">
+            <i data-lucide="chevron-left"></i>
+        </button>
+        <div class="slide-indicator" id="slideIndicator"></div>
+        <button class="nav-btn" id="nextBtn" aria-label="Next slide">
+            <i data-lucide="chevron-right"></i>
+        </button>
     </div>
 
     <script src="script.js"></script>
