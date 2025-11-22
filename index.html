@@ -1,592 +1,1731 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Neural Arc">
-    <meta name="description" content="Neural Arc Investor Deck - Helium AI Platform">
-    <title>Neural Arc - Investor Deck</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Helium AI - Investor Pitch Deck</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --quantum-core: #262626;
+            --core-reactor: #E0693D;
+            --mint-node: #D0EF5E;
+            --neural-drift: #A69CBE;
+            --dataflow-blue: #A6C8D5;
+            --ion-spark: #EFB3AF;
+            --solar-pulse: #E7B31B;
+            --verdant-code: #27584F;
+            --comet-grey: #ECECEC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: var(--quantum-core);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Cover Slide */
+        .cover-slide {
+            background: linear-gradient(135deg, var(--quantum-core) 0%, var(--verdant-code) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cover-slide h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .cover-slide .tagline {
+            font-size: 32px;
+            color: var(--mint-node);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cover-slide .subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 60px;
+        }
+
+        .cover-slide .metrics {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .cover-slide .metric {
+            text-align: center;
+        }
+
+        .cover-slide .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--mint-node);
+        }
+
+        .cover-slide .metric-label {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--quantum-core);
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--core-reactor);
+        }
+
+        /* Problem Slide */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid var(--core-reactor);
+        }
+
+        .problem-card i {
+            color: var(--core-reactor);
+            margin-bottom: 20px;
+        }
+
+        .problem-card h4 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--quantum-core);
+        }
+
+        .problem-card p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Solution Slide */
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 2px solid var(--comet-grey);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--mint-node);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .feature-card i {
+            color: var(--core-reactor);
+            margin-bottom: 16px;
+        }
+
+        .feature-card h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--quantum-core);
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Market Slide */
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--dataflow-blue) 0%, var(--neural-drift) 100%);
+            border-radius: 16px;
+            color: white;
+        }
+
+        .stat-box .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .stat-box .stat-label {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        thead {
+            background: var(--quantum-core);
+            color: white;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--comet-grey);
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: -40px;
+            width: 2px;
+            background: var(--mint-node);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--core-reactor);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content h4 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--quantum-core);
+        }
+
+        .timeline-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--neural-drift) 0%, var(--dataflow-blue) 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .team-member h4 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--quantum-core);
+        }
+
+        .team-member .role {
+            font-size: 16px;
+            color: var(--core-reactor);
+            margin-bottom: 12px;
+        }
+
+        .team-member p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--core-reactor) 0%, var(--solar-pulse) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 60px;
+            border-radius: 24px;
+            margin: 60px 0;
+        }
+
+        .cta-section h3 {
+            color: white;
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 48px;
+            background: white;
+            color: var(--core-reactor);
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* Source References */
+        .sources {
+            margin-top: 60px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid var(--neural-drift);
+        }
+
+        .sources h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--quantum-core);
+        }
+
+        .sources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sources li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .sources li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--neural-drift);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--mint-node) 0%, var(--solar-pulse) 100%);
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+            color: var(--quantum-core);
+        }
+
+        .highlight-box h3 {
+            color: var(--quantum-core);
+            margin-bottom: 20px;
+        }
+
+        .highlight-box p {
+            font-size: 20px;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 60px 30px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .problem-grid,
+            .solution-features,
+            .market-stats,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-slide h1 {
+                font-size: 48px;
+            }
+
+            .cover-slide .metrics {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y proximity;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--mint-node);
+            transform: scale(1.3);
+        }
+
+        /* Print Styles */
+        @media print {
+            .slide {
+                page-break-after: always;
+                min-height: auto;
+            }
+            
+            .nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <!-- Slide 1: Cover -->
-        <section class="slide slide-cover" id="slide-1">
-            <div class="slide-content">
-                <div class="logo-container">
-                    <img src="logo.jpeg" alt="Neural Arc" class="logo">
+    <!-- Navigation Dots -->
+    <div class="nav" id="nav"></div>
+
+    <!-- Slide 1: Cover -->
+    <section class="slide cover-slide" id="slide1">
+        <div class="container">
+            <h1>Helium AI</h1>
+            <p class="tagline">Replace Multiple AI Tools with One Unified Platform</p>
+            <p class="subtitle">Autonomous Intelligence for Enterprise Scale</p>
+            
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">10x</div>
+                    <div class="metric-label">Faster Deployment</div>
                 </div>
-                <h1 class="title-main">The Future of<br>AI Orchestration</h1>
-                <div class="tagline">Helium AI: Where Intelligence Meets Memory</div>
-                
-                <div class="cover-metrics">
-                    <div class="metric-box">
-                        <div class="metric-value">3</div>
-                        <div class="metric-label">Enterprise Pilots</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">10+</div>
-                        <div class="metric-label">Mid-Size Businesses</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-value">123</div>
-                        <div class="metric-label">Waitlist Companies</div>
-                    </div>
+                <div class="metric">
+                    <div class="metric-value">40%</div>
+                    <div class="metric-label">Cost Reduction</div>
                 </div>
-                
-                <div class="funding-highlight">
-                    <div class="funding-text">
-                        <span class="raising">Raising $2M USD</span>
-                        <span class="committed">$500K Committed</span>
-                    </div>
+                <div class="metric">
+                    <div class="metric-value">$5M</div>
+                    <div class="metric-label">Seed Round</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Slide 2: The Problem -->
-        <section class="slide" id="slide-2">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">The AI Agent Paradox</h2>
-                    <div class="slide-subtitle">Current solutions lack persistent intelligence</div>
+    <!-- Slide 2: The Problem -->
+    <section class="slide" id="slide2">
+        <div class="container">
+            <h2>The Enterprise AI Chaos</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <i data-lucide="layers" size="48"></i>
+                    <h4>Tool Fragmentation</h4>
+                    <p>Enterprises juggle 15+ separate AI subscriptions, creating data silos, integration nightmares, and massive operational overhead.</p>
                 </div>
-                
-                <div class="problem-container">
-                    <div class="problem-item">
-                        <div class="problem-icon">
-                            <i data-lucide="brain"></i>
-                        </div>
-                        <div class="problem-content">
-                            <h3>Context Amnesia</h3>
-                            <p>Agents forget everything between sessions</p>
-                        </div>
-                    </div>
-                    
-                    <div class="problem-item">
-                        <div class="problem-icon">
-                            <i data-lucide="alert-triangle"></i>
-                        </div>
-                        <div class="problem-content">
-                            <h3>Accuracy Degradation</h3>
-                            <p>Cannot learn from past interactions</p>
-                        </div>
-                    </div>
-                    
-                    <div class="problem-item">
-                        <div class="problem-icon">
-                            <i data-lucide="workflow"></i>
-                        </div>
-                        <div class="problem-content">
-                            <h3>Workflow Fragmentation</h3>
-                            <p>Disconnected tools without knowledge sharing</p>
-                        </div>
-                    </div>
-                    
-                    <div class="problem-item">
-                        <div class="problem-icon">
-                            <i data-lucide="dollar-sign"></i>
-                        </div>
-                        <div class="problem-content">
-                            <h3>ROI Uncertainty</h3>
-                            <p>88% of enterprises struggle to measure value</p>
-                        </div>
-                    </div>
+                <div class="problem-card">
+                    <i data-lucide="dollar-sign" size="48"></i>
+                    <h4>Unsustainable Costs</h4>
+                    <p>Companies spend $250K+ annually on fragmented AI tools, with hidden costs in training, integration, and maintenance.</p>
                 </div>
-                
-                <div class="market-stat">
-                    <div class="stat-number">$7.9B</div>
-                    <div class="stat-text">2025 Market Size | 45.8% CAGR | Growing to $50B by 2030</div>
+                <div class="problem-card">
+                    <i data-lucide="clock" size="48"></i>
+                    <h4>Deployment Delays</h4>
+                    <p>Traditional AI implementations take 6-12 months, delaying ROI and competitive advantage in fast-moving markets.</p>
+                </div>
+                <div class="problem-card">
+                    <i data-lucide="alert-triangle" size="48"></i>
+                    <h4>Limited Autonomy</h4>
+                    <p>Current AI tools require constant human oversight, failing to deliver true end-to-end automation and autonomous decision-making.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Slide 3: The Solution -->
-        <section class="slide slide-solution" id="slide-3">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">Helium AI: Intelligence That Remembers</h2>
-                    <div class="slide-subtitle">Powered by Adaptive Intelligence Memory (AIM)</div>
+    <!-- Slide 3: The Solution -->
+    <section class="slide" id="slide3">
+        <div class="container">
+            <h2>Helium: One Platform, Unlimited Intelligence</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">A unified AI platform that replaces your entire AI tool stack with autonomous agents that work 24/7.</p>
+            
+            <div class="solution-features">
+                <div class="feature-card">
+                    <i data-lucide="bot" size="40"></i>
+                    <h4>Autonomous Agents</h4>
+                    <p>Deploy intelligent agents that handle complex workflows without human intervention</p>
                 </div>
-                
-                <div class="aim-hero">
-                    <div class="aim-badge">
-                        <i data-lucide="sparkles"></i>
-                        <span>AIM Technology</span>
-                    </div>
-                    <p class="aim-tagline">The world's first AI orchestration platform with persistent, evolving memory</p>
+                <div class="feature-card">
+                    <i data-lucide="globe" size="40"></i>
+                    <h4>Web Automation</h4>
+                    <p>Automate tasks across thousands of sites simultaneously with precision</p>
                 </div>
-                
-                <div class="features-container">
-                    <div class="feature-box">
-                        <div class="feature-header">
-                            <i data-lucide="database"></i>
-                            <h3>Persistent Context</h3>
-                        </div>
-                        <p>Stores project history, preferences, and domain knowledge across all sessions</p>
-                    </div>
-                    
-                    <div class="feature-box">
-                        <div class="feature-header">
-                            <i data-lucide="trending-up"></i>
-                            <h3>Continuous Learning</h3>
-                        </div>
-                        <p>67% accuracy improvement through adaptive learning from every interaction</p>
-                    </div>
-                    
-                    <div class="feature-box">
-                        <div class="feature-header">
-                            <i data-lucide="layers"></i>
-                            <h3>Full-Stack Orchestration</h3>
-                        </div>
-                        <p>Execute complex workflows across web, code, data, and systems autonomously</p>
-                    </div>
-                    
-                    <div class="feature-box">
-                        <div class="feature-header">
-                            <i data-lucide="shield-check"></i>
-                            <h3>Enterprise-Grade Security</h3>
-                        </div>
-                        <p>User-isolated memory, SOC 2 compliance, granular access controls</p>
-                    </div>
+                <div class="feature-card">
+                    <i data-lucide="database" size="40"></i>
+                    <h4>Data Processing</h4>
+                    <p>Process millions of records in minutes with AI-powered insights</p>
                 </div>
-                
-                <div class="key-differentiator">
-                    <i data-lucide="star"></i>
-                    <span>While competitors offer stateless agents, Helium AI delivers stateful intelligence that compounds value over time</span>
+                <div class="feature-card">
+                    <i data-lucide="file-text" size="40"></i>
+                    <h4>Content Engine</h4>
+                    <p>Generate marketing copy, reports, and documentation at scale</p>
+                </div>
+                <div class="feature-card">
+                    <i data-lucide="code" size="40"></i>
+                    <h4>Dev Acceleration</h4>
+                    <p>Build applications and integrations with AI assistance</p>
+                </div>
+                <div class="feature-card">
+                    <i data-lucide="workflow" size="40"></i>
+                    <h4>Orchestration</h4>
+                    <p>Connect every system with seamless workflow automation</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Slide 4: Competitive Analysis -->
-        <section class="slide" id="slide-4">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">Competitive Positioning</h2>
-                    <div class="slide-subtitle">Clear differentiation in the AI agents market</div>
-                </div>
-                
-                <div class="comparison-matrix">
-                    <div class="matrix-row header-row">
-                        <div class="matrix-cell"></div>
-                        <div class="matrix-cell highlight-cell">Helium AI</div>
-                        <div class="matrix-cell">GenSpark</div>
-                        <div class="matrix-cell">Abacus AI</div>
-                        <div class="matrix-cell">Manus AI</div>
-                    </div>
-                    
-                    <div class="matrix-row">
-                        <div class="matrix-cell feature-cell">Persistent Memory (AIM)</div>
-                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
-                    </div>
-                    
-                    <div class="matrix-row">
-                        <div class="matrix-cell feature-cell">Continuous Learning</div>
-                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="x-circle"></i></div>
-                    </div>
-                    
-                    <div class="matrix-row">
-                        <div class="matrix-cell feature-cell">Full Orchestration</div>
-                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
-                    </div>
-                    
-                    <div class="matrix-row">
-                        <div class="matrix-cell feature-cell">Enterprise Ready</div>
-                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
-                    </div>
-                    
-                    <div class="matrix-row">
-                        <div class="matrix-cell feature-cell">Flexible Pricing</div>
-                        <div class="matrix-cell highlight-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="minus-circle"></i></div>
-                        <div class="matrix-cell"><i data-lucide="check-circle"></i></div>
-                    </div>
-                </div>
-                
-                <div class="swot-container">
-                    <div class="swot-box strengths">
-                        <h4><i data-lucide="award"></i> Strengths</h4>
-                        <ul>
-                            <li>Unique AIM technology - only persistent memory solution</li>
-                            <li>Strong enterprise traction with Fortune 500 pilots</li>
-                            <li>Full-stack capabilities across all domains</li>
+            <div class="highlight-box" style="margin-top: 60px;">
+                <h3>The Helium Advantage</h3>
+                <p><strong>One platform. One learning curve. One subscription.</strong> Helium delivers what enterprises actually need: a unified system that works autonomously, integrates seamlessly, and costs 80% less than the fragmented alternative.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Competitive Completion Canvas -->
+    <section class="slide" id="slide4">
+        <div class="container">
+            <h2>Competitive Completion Canvas</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Detailed analysis of key players and their funding trajectories</p>
+            
+            <h3>Full-Platform AI Agents</h3>
+            <table style="margin-bottom: 40px;">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Founded</th>
+                        <th>Early Valuation</th>
+                        <th>Latest Round</th>
+                        <th>Current Valuation</th>
+                        <th>ARR</th>
+                        <th>Time to Scale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Genspark AI</strong></td>
+                        <td>2023</td>
+                        <td>~$100M (est. Seed)</td>
+                        <td>$275M Series B (Nov 2025)</td>
+                        <td>$1.25B</td>
+                        <td>Undisclosed</td>
+                        <td><2 years to unicorn</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manus AI</strong></td>
+                        <td>2022</td>
+                        <td>$100M (Series A, late 2024)</td>
+                        <td>$75M Series B (Apr 2025)</td>
+                        <td>$500M</td>
+                        <td>$90M (Aug 2025)</td>
+                        <td>8 months (5x valuation)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abacus AI</strong></td>
+                        <td>2019</td>
+                        <td>~$30M (est. early rounds)</td>
+                        <td>$13M Series A (Sep 2025)</td>
+                        <td>Undisclosed</td>
+                        <td>Undisclosed</td>
+                        <td>3+ years</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Micro-Tools (Single Use Case)</h3>
+            <table style="margin-bottom: 40px;">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Focus Area</th>
+                        <th>Early Valuation</th>
+                        <th>Latest Round</th>
+                        <th>Current Valuation</th>
+                        <th>ARR</th>
+                        <th>Key Metrics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gamma</strong></td>
+                        <td>AI Presentations</td>
+                        <td>~$50M (est. Series A)</td>
+                        <td>$68M Series B (Nov 2025)</td>
+                        <td>$2.1B</td>
+                        <td>$100M</td>
+                        <td>70M users, 600K paying, profitable since 2023</td>
+                    </tr>
+                    <tr>
+                        <td><strong>n8n</strong></td>
+                        <td>Workflow Automation</td>
+                        <td>~$200M (est. Series B)</td>
+                        <td>$180M Series C (2025)</td>
+                        <td>$2.5B</td>
+                        <td>Undisclosed</td>
+                        <td>Open-source, enterprise focus</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Helium's Positioning</h3>
+            <div style="background: linear-gradient(135deg, var(--mint-node) 0%, var(--solar-pulse) 100%); padding: 50px; border-radius: 16px; color: var(--quantum-core); margin-top: 30px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">Competitive Advantages</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 18px; line-height: 2;">
+                            <li><i data-lucide="check" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> <strong>Unified platform</strong> vs. single-purpose tools</li>
+                            <li><i data-lucide="check" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> <strong>True autonomy</strong> vs. assisted AI</li>
+                            <li><i data-lucide="check" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> <strong>80% cost savings</strong> vs. tool stack</li>
+                            <li><i data-lucide="check" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> <strong>10x faster deployment</strong> vs. traditional</li>
                         </ul>
                     </div>
-                    <div class="swot-box opportunities">
-                        <h4><i data-lucide="trending-up"></i> Opportunities</h4>
-                        <ul>
-                            <li>$50B market by 2030 with 45.8% CAGR</li>
-                            <li>85% enterprise adoption expected by end of 2025</li>
-                            <li>First-mover advantage in memory-enabled AI</li>
+                    <div>
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">Market Opportunity</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 18px; line-height: 2;">
+                            <li><i data-lucide="trending-up" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> Larger TAM than micro-tools</li>
+                            <li><i data-lucide="target" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> Higher ACV ($50K vs. $5-10K)</li>
+                            <li><i data-lucide="repeat" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> Better retention (platform lock-in)</li>
+                            <li><i data-lucide="zap" size="20" style="color: var(--verdant-code); vertical-align: middle; margin-right: 8px;"></i> Network effects at scale</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Slide 5: Business Model -->
-        <section class="slide" id="slide-5">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">Revenue Model</h2>
-                    <div class="slide-subtitle">Dual-stream approach for B2B and B2C markets</div>
+            <div class="sources" style="margin-top: 40px;">
+                <h4>Sources</h4>
+                <ul>
+                    <li>TechCrunch: Gamma Series B ($68M at $2.1B, Nov 2025)</li>
+                    <li>Business Wire: Genspark Series B ($275M at $1.25B, Nov 2025)</li>
+                    <li>Bloomberg: Manus AI Series B ($75M at $500M, Apr 2025)</li>
+                    <li>Sacra: Manus Revenue Analysis ($90M ARR, Aug 2025)</li>
+                    <li>The SaaS News: n8n Series C ($180M at $2.5B, 2025)</li>
+                    <li>Tracxn: Abacus AI Funding History ($90.2M total, Sep 2025)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Market Opportunity -->
+    <section class="slide" id="slide5">
+        <div class="container">
+            <h2>Massive Market Opportunity</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">The AI agent market is exploding with 45% CAGR through 2030</p>
+            
+            <div class="market-stats">
+                <div class="stat-box">
+                    <div class="stat-number">$7.4B</div>
+                    <div class="stat-label">2025 Market Size</div>
                 </div>
-                
-                <div class="revenue-grid">
-                    <div class="revenue-column b2b">
-                        <div class="column-header">
-                            <i data-lucide="building-2"></i>
-                            <h3>B2B Enterprise</h3>
+                <div class="stat-box">
+                    <div class="stat-number">$15.5B</div>
+                    <div class="stat-label">2027 Market Size</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">$47B</div>
+                    <div class="stat-label">2030 Market Size</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="marketChart"></canvas>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3>Enterprise Adoption Accelerating</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Enterprise Adoption Rate</th>
+                            <th>Market Drivers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>2025</strong></td>
+                            <td>25% of GenAI enterprises</td>
+                            <td>Early adopters, pilot programs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2027</strong></td>
+                            <td>50% of GenAI enterprises</td>
+                            <td>Mainstream adoption, proven ROI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2028</strong></td>
+                            <td>33% of all enterprise software</td>
+                            <td>Industry standard, competitive necessity</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sources">
+                <h4>Sources</h4>
+                <ul>
+                    <li>MarketsandMarkets: AI Agent Market Analysis 2025</li>
+                    <li>Grand View Research: Global AI Agents Market Report</li>
+                    <li>Deloitte Global 2025 Predictions Report</li>
+                    <li>Gartner: Enterprise AI Adoption Forecast</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Competitive Landscape -->
+    <section class="slide" id="slide6">
+        <div class="container">
+            <h2>Competitive Landscape</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Learning from recent AI startup successes</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Company</th>
+                        <th>Focus</th>
+                        <th>Pre-Revenue Valuation</th>
+                        <th>Current Valuation</th>
+                        <th>Time to Scale</th>
+                        <th>Current ARR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td><strong>Gamma</strong></td>
+                        <td>AI Presentations</td>
+                        <td>~$50M (est.)</td>
+                        <td>$2.1B</td>
+                        <td>~2 years</td>
+                        <td>$100M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td><strong>Genspark</strong></td>
+                        <td>AI Workspace</td>
+                        <td>~$100M (est.)</td>
+                        <td>$1.25B</td>
+                        <td><2 years</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td><strong>Manus AI</strong></td>
+                        <td>AI Agents</td>
+                        <td>$100M</td>
+                        <td>$500M</td>
+                        <td>8 months</td>
+                        <td>$90M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td><strong>Abacus AI</strong></td>
+                        <td>Enterprise AI</td>
+                        <td>~$30M (est.)</td>
+                        <td>Undisclosed</td>
+                        <td>3+ years</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td><strong>n8n</strong></td>
+                        <td>Workflow Automation</td>
+                        <td>~$200M (est.)</td>
+                        <td>$2.5B</td>
+                        <td>3+ years</td>
+                        <td>Undisclosed</td>
+                    </tr>
+                    <tr style="background: linear-gradient(135deg, rgba(208, 239, 94, 0.3) 0%, rgba(231, 179, 27, 0.3) 100%);">
+                        <td><strong>6</strong></td>
+                        <td><strong>Helium AI</strong></td>
+                        <td>Unified AI Platform</td>
+                        <td>Seeking $5M</td>
+                        <td>TBD</td>
+                        <td>-</td>
+                        <td>Pre-revenue</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h3>Key Insight: Rapid Value Creation</h3>
+                <p>Recent AI startups have achieved 5-20x valuation increases within 12-24 months post-launch. Manus AI grew from $100M to $500M valuation in just 8 months with $90M ARR. Gamma reached $100M ARR profitably in ~2 years. These benchmarks validate aggressive growth potential in the AI agent space.</p>
+            </div>
+
+            <div class="sources">
+                <h4>Sources</h4>
+                <ul>
+                    <li>TechCrunch: AI Startup Funding Tracker 2024-2025</li>
+                    <li>The SaaS News: Gamma Series B Announcement (Nov 2025)</li>
+                    <li>Bloomberg: Manus AI Funding Report (April 2025)</li>
+                    <li>Business Wire: Genspark Series B (Nov 2025)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Why Helium Wins -->
+    <section class="slide" id="slide7">
+        <div class="container">
+            <h2>Why Helium Wins</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Unique positioning in a fragmented market</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th>Competitors</th>
+                        <th>Helium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Platform Scope</strong></td>
+                        <td>Single-purpose tools (Gamma: presentations, n8n: workflows)</td>
+                        <td><strong>Full-spectrum unified platform</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Autonomy Level</strong></td>
+                        <td>Assisted AI requiring human oversight</td>
+                        <td><strong>True autonomous agents with 24/7 operation</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integration</strong></td>
+                        <td>Limited connectors, manual setup</td>
+                        <td><strong>Native integration with all enterprise systems</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learning Curve</strong></td>
+                        <td>15+ tools to learn and manage</td>
+                        <td><strong>Single platform, one learning curve</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deployment Time</strong></td>
+                        <td>6-12 months for full stack</td>
+                        <td><strong>Weeks with 10x faster deployment</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box" style="margin-top: 60px;">
+                <h3>The Helium Moat</h3>
+                <p>While competitors focus on single use cases, Helium delivers the entire AI infrastructure enterprises need. Our unified platform creates network effects: each capability enhances the others, making Helium exponentially more valuable as adoption grows. This is the difference between selling tools and selling transformation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Revenue Projections -->
+    <section class="slide" id="slide8">
+        <div class="container">
+            <h2>Revenue Forecast</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Conservative projections based on proven AI startup benchmarks</p>
+            
+            <h3>Helium Revenue Projections</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segment</th>
+                        <th>2026 (Year 1)</th>
+                        <th>2027 (Year 2)</th>
+                        <th>2028 (Year 3)</th>
+                        <th>Growth Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>B2B Enterprise</strong></td>
+                        <td>$5M - $7M</td>
+                        <td>$12M - $18M</td>
+                        <td>$20M - $28M</td>
+                        <td>140-157% Y1→Y2<br>56-67% Y2→Y3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B2C Consumer</strong></td>
+                        <td>$500K</td>
+                        <td>$800K</td>
+                        <td>$1.2M</td>
+                        <td>60% YoY</td>
+                    </tr>
+                    <tr style="background: #f0f8ff; font-weight: 600;">
+                        <td><strong>Total ARR</strong></td>
+                        <td><strong>$5.5M - $7.5M</strong></td>
+                        <td><strong>$12.8M - $18.8M</strong></td>
+                        <td><strong>$21.2M - $29.2M</strong></td>
+                        <td><strong>133-151% Y1→Y2<br>56-66% Y2→Y3</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container" style="margin-top: 40px;">
+                <canvas id="revenueChart"></canvas>
+            </div>
+
+            <h3 style="margin-top: 60px;">Benchmark Validation</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Revenue Achievement</th>
+                        <th>Timeframe</th>
+                        <th>Helium Comparison</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gamma</strong></td>
+                        <td>$0 → $100M ARR</td>
+                        <td>~2 years</td>
+                        <td>Helium targets $5-7M Y1 (more conservative)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manus AI</strong></td>
+                        <td>$0 → $90M ARR</td>
+                        <td>8 months post-launch</td>
+                        <td>Helium targets $12-18M Y2 (more conservative)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fyxer AI</strong></td>
+                        <td>$1M → $17M ARR</td>
+                        <td>8 months (1,600% growth)</td>
+                        <td>Helium targets 140-157% Y1→Y2 (more conservative)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI-Native Median</strong></td>
+                        <td>110% growth ($1-5M band)</td>
+                        <td>Annual benchmark</td>
+                        <td>Helium targets 140-157% (above median)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sources">
+                <h4>Sources</h4>
+                <ul>
+                    <li>High Alpha 2025 SaaS Benchmarks Report</li>
+                    <li>Growth Unhinged: AI-Native Startup Performance</li>
+                    <li>TechCrunch: Gamma, Manus AI, Fyxer AI funding announcements</li>
+                    <li>Sacra: Manus Revenue Analysis (August 2025)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Product Roadmap -->
+    <section class="slide" id="slide9">
+        <div class="container">
+            <h2>Product Roadmap</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Building the future of enterprise AI</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i data-lucide="check" size="20"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Current (Q4 2025)</h4>
+                        <p><strong>Foundation Complete:</strong> Autonomous AI Agents, Adaptive Intelligence Memory, Enterprise Integrations (CRM, ERP, APIs), Web Automation, Data Processing, Content Generation</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i data-lucide="target" size="20"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>2026 (Year 1)</h4>
+                        <p><strong>Platform Expansion:</strong> Native Database for full-stack apps, Helium App Marketplace (3rd-party integrations), Advanced Adaptive Intelligence Memory (enhanced learning), Direct API Integrations (no-code connectors), Multi-agent orchestration</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i data-lucide="rocket" size="20"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>2027 (Year 2)</h4>
+                        <p><strong>Enterprise Scale:</strong> Industry-specific agent templates, Advanced analytics & forecasting, White-label solutions, Global deployment infrastructure, Enhanced security & compliance frameworks</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i data-lucide="trophy" size="20"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>2028 (Year 3)</h4>
+                        <p><strong>Market Leadership:</strong> AI-powered predictive insights, Cross-enterprise workflow automation, Strategic partnership ecosystem, International expansion, Acquisition/IPO readiness</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px;">
+                <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, var(--neural-drift) 0%, var(--dataflow-blue) 100%); border-radius: 16px; color: white;">
+                    <i data-lucide="zap" size="48" style="margin-bottom: 16px;"></i>
+                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Q1 2026</div>
+                    <div style="font-size: 16px; opacity: 0.9;">App Marketplace Launch</div>
+                </div>
+                <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, var(--core-reactor) 0%, var(--solar-pulse) 100%); border-radius: 16px; color: white;">
+                    <i data-lucide="database" size="48" style="margin-bottom: 16px;"></i>
+                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Q2 2026</div>
+                    <div style="font-size: 16px; opacity: 0.9;">Native Database Release</div>
+                </div>
+                <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, var(--verdant-code) 0%, var(--mint-node) 100%); border-radius: 16px; color: white;">
+                    <i data-lucide="globe" size="48" style="margin-bottom: 16px;"></i>
+                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Q4 2026</div>
+                    <div style="font-size: 16px; opacity: 0.9;">Global Expansion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Go-to-Market Strategy -->
+    <section class="slide" id="slide10">
+        <div class="container">
+            <h2>Go-to-Market Strategy</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Multi-channel approach targeting high-value enterprise customers</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div>
+                    <h3>Strategic Partnerships</h3>
+                    <div style="background: #f8f9fa; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                            <i data-lucide="handshake" size="32" style="color: var(--core-reactor);"></i>
+                            <h4 style="font-size: 20px; margin: 0;">Final Stage Partners</h4>
                         </div>
-                        <div class="pricing-tiers">
-                            <div class="tier-item">
-                                <div class="tier-name">Setup Fee</div>
-                                <div class="tier-price">$5K - $50K</div>
-                                <div class="tier-desc">Implementation & integration</div>
-                            </div>
-                            <div class="tier-item">
-                                <div class="tier-name">PAYG Credits</div>
-                                <div class="tier-price">$0.01 - $0.10</div>
-                                <div class="tier-desc">Per credit consumption</div>
-                            </div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e0e0e0; font-size: 16px;">
+                                <strong>GTT Data</strong> - Enterprise data solutions
+                            </li>
+                            <li style="padding: 12px 0; font-size: 16px;">
+                                <strong>UXLI</strong> - UX/UI consulting firm
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>Direct Enterprise Outreach</h3>
+                    <div style="background: #f8f9fa; padding: 30px; border-radius: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                            <i data-lucide="building-2" size="32" style="color: var(--core-reactor);"></i>
+                            <h4 style="font-size: 20px; margin: 0;">Target Industries</h4>
                         </div>
-                        <div class="target-info">
-                            <div class="info-row">
-                                <span class="info-label">Target:</span>
-                                <span class="info-value">Fortune 500, Mid-Market</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">ACV:</span>
-                                <span class="info-value">$50K - $500K</span>
-                            </div>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e0e0e0; font-size: 16px;">
+                                <i data-lucide="landmark" size="16" style="color: var(--neural-drift);"></i> Banking & Financial Services
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e0e0e0; font-size: 16px;">
+                                <i data-lucide="shield" size="16" style="color: var(--neural-drift);"></i> Insurance
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e0e0e0; font-size: 16px;">
+                                <i data-lucide="shopping-cart" size="16" style="color: var(--neural-drift);"></i> Retail & E-commerce
+                            </li>
+                            <li style="padding: 12px 0; font-size: 16px;">
+                                <i data-lucide="briefcase" size="16" style="color: var(--neural-drift);"></i> Consulting Firms
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Sales Strategy</h3>
+                    <div style="background: linear-gradient(135deg, var(--mint-node) 0%, var(--solar-pulse) 100%); padding: 40px; border-radius: 16px; color: var(--quantum-core); margin-bottom: 30px;">
+                        <h4 style="font-size: 24px; margin-bottom: 20px;">Phase 1: Network Leverage (Q1-Q2 2026)</h4>
+                        <p style="font-size: 16px; line-height: 1.8;">Leverage founder's close network to reach CXOs in target industries. Focus on 10-15 high-value enterprise pilots with $50K-$150K ACV.</p>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, var(--dataflow-blue) 0%, var(--neural-drift) 100%); padding: 40px; border-radius: 16px; color: white; margin-bottom: 30px;">
+                        <h4 style="font-size: 24px; margin-bottom: 20px; color: white;">Phase 2: Partner Channel (Q3-Q4 2026)</h4>
+                        <p style="font-size: 16px; line-height: 1.8; opacity: 0.95;">Activate GTT Data and UXLI partnerships for channel sales. Target 30-50 mid-market customers through partner networks.</p>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, var(--core-reactor) 0%, var(--ion-spark) 100%); padding: 40px; border-radius: 16px; color: white;">
+                        <h4 style="font-size: 24px; margin-bottom: 20px; color: white;">Phase 3: Scale (2027-2028)</h4>
+                        <p style="font-size: 16px; line-height: 1.8; opacity: 0.95;">Build dedicated sales team, expand partner ecosystem, launch self-service B2C platform, international expansion.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h3>Customer Acquisition Strategy</h3>
+                <p><strong>Land & Expand:</strong> Start with single-department pilots ($12K-$50K), demonstrate ROI within 90 days, expand to enterprise-wide deployment ($150K+). Average expansion from $50K to $150K within 12 months based on proven value delivery.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Financial Projections -->
+    <section class="slide" id="slide11">
+        <div class="container">
+            <h2>Financial Projections & Metrics</h2>
+            
+            <div class="chart-container">
+                <canvas id="financialChart"></canvas>
+            </div>
+
+            <h3 style="margin-top: 40px;">Key Financial Metrics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>2026 (Year 1)</th>
+                        <th>2027 (Year 2)</th>
+                        <th>2028 (Year 3)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Total ARR</strong></td>
+                        <td>$5.5M - $7.5M</td>
+                        <td>$12.8M - $18.8M</td>
+                        <td>$21.2M - $29.2M</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gross Margin</strong></td>
+                        <td>65%</td>
+                        <td>72%</td>
+                        <td>78%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Count (B2B)</strong></td>
+                        <td>100-140</td>
+                        <td>240-360</td>
+                        <td>400-560</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Revenue Retention</strong></td>
+                        <td>110%</td>
+                        <td>125%</td>
+                        <td>135%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CAC Payback Period</strong></td>
+                        <td>2 months</td>
+                        <td>1.5 months</td>
+                        <td>1 month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rule of 40</strong></td>
+                        <td>85-95</td>
+                        <td>110-125</td>
+                        <td>90-105</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px;">
+                <div style="background: #f8f9fa; padding: 40px; border-radius: 16px;">
+                    <h3 style="margin-bottom: 24px;">Use of Funds ($5M)</h3>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Product Development</span>
+                            <strong>40% ($2M)</strong>
+                        </div>
+                        <div style="height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 40%; height: 100%; background: var(--core-reactor);"></div>
                         </div>
                     </div>
-                    
-                    <div class="revenue-column b2c">
-                        <div class="column-header">
-                            <i data-lucide="users"></i>
-                            <h3>B2C Professional</h3>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Sales & Marketing</span>
+                            <strong>35% ($1.75M)</strong>
                         </div>
-                        <div class="pricing-tiers">
-                            <div class="tier-item">
-                                <div class="tier-name">Subscription</div>
-                                <div class="tier-price">$19 - $199/mo</div>
-                                <div class="tier-desc">Monthly or annual plans</div>
-                            </div>
-                            <div class="tier-item">
-                                <div class="tier-name">Add-On Credits</div>
-                                <div class="tier-price">$10 - $100</div>
-                                <div class="tier-desc">Credit packs for power users</div>
-                            </div>
+                        <div style="height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 35%; height: 100%; background: var(--solar-pulse);"></div>
                         </div>
-                        <div class="target-info">
-                            <div class="info-row">
-                                <span class="info-label">Target:</span>
-                                <span class="info-value">Developers, Creators</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">LTV:</span>
-                                <span class="info-value">$500 - $2,400</span>
-                            </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Operations & Infrastructure</span>
+                            <strong>15% ($750K)</strong>
+                        </div>
+                        <div style="height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 15%; height: 100%; background: var(--neural-drift);"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Working Capital</span>
+                            <strong>10% ($500K)</strong>
+                        </div>
+                        <div style="height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
+                            <div style="width: 10%; height: 100%; background: var(--verdant-code);"></div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="projection-section">
-                    <h4>3-Year Revenue Projection</h4>
-                    <div class="projection-chart">
-                        <div class="chart-bar">
-                            <div class="bar-label">Year 1</div>
-                            <div class="bar-visual" style="width: 8%">
-                                <span class="bar-value">$2M</span>
-                            </div>
+
+                <div style="background: #f8f9fa; padding: 40px; border-radius: 16px;">
+                    <h3 style="margin-bottom: 24px;">Key Milestones</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 16px 0; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 12px;">
+                            <i data-lucide="check-circle" size="20" style="color: var(--mint-node);"></i>
+                            <span><strong>Q1 2026:</strong> 10 enterprise pilots</span>
+                        </li>
+                        <li style="padding: 16px 0; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 12px;">
+                            <i data-lucide="check-circle" size="20" style="color: var(--mint-node);"></i>
+                            <span><strong>Q2 2026:</strong> $1M ARR milestone</span>
+                        </li>
+                        <li style="padding: 16px 0; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 12px;">
+                            <i data-lucide="check-circle" size="20" style="color: var(--mint-node);"></i>
+                            <span><strong>Q3 2026:</strong> App Marketplace launch</span>
+                        </li>
+                        <li style="padding: 16px 0; border-bottom: 1px solid #e0e0e0; display: flex; align-items: center; gap: 12px;">
+                            <i data-lucide="check-circle" size="20" style="color: var(--mint-node);"></i>
+                            <span><strong>Q4 2026:</strong> $5M ARR achieved</span>
+                        </li>
+                        <li style="padding: 16px 0; display: flex; align-items: center; gap: 12px;">
+                            <i data-lucide="check-circle" size="20" style="color: var(--mint-node);"></i>
+                            <span><strong>2027:</strong> Series A readiness</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 12: Exit Strategy -->
+    <section class="slide" id="slide12">
+        <div class="container">
+            <h2>Exit Strategy</h2>
+            <p style="font-size: 22px; color: #666; margin-bottom: 40px;">Clear path to liquidity within 36-40 months</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div style="background: linear-gradient(135deg, var(--neural-drift) 0%, var(--dataflow-blue) 100%); padding: 50px; border-radius: 16px; color: white;">
+                    <i data-lucide="building" size="56" style="margin-bottom: 24px;"></i>
+                    <h3 style="color: white; margin-bottom: 20px;">Strategic Acquisition</h3>
+                    <p style="font-size: 18px; line-height: 1.8; opacity: 0.95;">Target acquirers: Microsoft, Salesforce, ServiceNow, Oracle, SAP. Rationale: Unified AI platform complements existing enterprise suites. Recent comps: Microsoft acquired Nuance ($19.7B), Salesforce acquired Slack ($27.7B).</p>
+                    <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.3);">
+                        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">$500M+</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Target Acquisition Value</div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--core-reactor) 0%, var(--solar-pulse) 100%); padding: 50px; border-radius: 16px; color: white;">
+                    <i data-lucide="trending-up" size="56" style="margin-bottom: 24px;"></i>
+                    <h3 style="color: white; margin-bottom: 20px;">IPO Path</h3>
+                    <p style="font-size: 18px; line-height: 1.8; opacity: 0.95;">Target: NASDAQ listing by Q2 2029. Requirements: $50M+ ARR, strong unit economics, proven scalability. Recent AI IPO comps: UiPath ($35B peak), C3.ai ($10B+), Palantir ($60B+).</p>
+                    <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.3);">
+                        <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">$1B+</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Target IPO Valuation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h3>Exit Timeline</h3>
+                <div style="background: #f8f9fa; padding: 40px; border-radius: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <div style="text-align: center; flex: 1;">
+                            <div style="font-size: 28px; font-weight: 700; color: var(--core-reactor); margin-bottom: 8px;">Jan 2026</div>
+                            <div style="font-size: 16px; color: #666;">Seed Round Close</div>
                         </div>
-                        <div class="chart-bar">
-                            <div class="bar-label">Year 2</div>
-                            <div class="bar-visual" style="width: 32%">
-                                <span class="bar-value">$8M</span>
-                            </div>
+                        <div style="width: 40px; height: 2px; background: var(--mint-node);"></div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="font-size: 28px; font-weight: 700; color: var(--core-reactor); margin-bottom: 8px;">Q4 2027</div>
+                            <div style="font-size: 16px; color: #666;">Series A ($15-20M)</div>
                         </div>
-                        <div class="chart-bar">
-                            <div class="bar-label">Year 3</div>
-                            <div class="bar-visual" style="width: 100%">
-                                <span class="bar-value">$25M</span>
-                            </div>
+                        <div style="width: 40px; height: 2px; background: var(--mint-node);"></div>
+                        <div style="text-align: center; flex: 1;">
+                            <div style="font-size: 28px; font-weight: 700; color: var(--core-reactor); margin-bottom: 8px;">Q2 2029</div>
+                            <div style="font-size: 16px; color: #666;">Exit Event</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; font-size: 18px; color: #666; margin-top: 30px;">
+                        <strong>36-40 months from seed to exit</strong> - aligned with investor expectations for liquidity
+                    </p>
+                </div>
+            </div>
+
+            <div class="sources">
+                <h4>Sources</h4>
+                <ul>
+                    <li>PitchBook: AI M&A Activity 2024-2025</li>
+                    <li>CB Insights: AI IPO Market Analysis</li>
+                    <li>Crunchbase: Recent AI Acquisitions Database</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 13: The Ask -->
+    <section class="slide" id="slide13" style="background: linear-gradient(135deg, var(--quantum-core) 0%, var(--verdant-code) 100%); color: white;">
+        <div class="container">
+            <h2 style="color: white; text-align: center; font-size: 56px; margin-bottom: 30px;">The Investment Opportunity</h2>
+            <p style="text-align: center; font-size: 26px; opacity: 0.9; margin-bottom: 80px;">Join us in building the future of enterprise AI</p>
+            
+            <!-- Key Investment Metrics -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; margin-bottom: 80px;">
+                <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 70px 40px; border-radius: 24px; backdrop-filter: blur(10px); border: 3px solid rgba(208, 239, 94, 0.5);">
+                    <div style="font-size: 88px; font-weight: 800; color: var(--mint-node); margin-bottom: 24px; line-height: 1;">$5M</div>
+                    <div style="font-size: 24px; opacity: 0.95; font-weight: 600; margin-bottom: 8px;">Seed Round</div>
+                    <div style="font-size: 16px; opacity: 0.8;">SAFE Note</div>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 70px 40px; border-radius: 24px; backdrop-filter: blur(10px); border: 3px solid rgba(231, 179, 27, 0.5);">
+                    <div style="font-size: 88px; font-weight: 800; color: var(--solar-pulse); margin-bottom: 24px; line-height: 1;">20%</div>
+                    <div style="font-size: 24px; opacity: 0.95; font-weight: 600; margin-bottom: 8px;">Discount</div>
+                    <div style="font-size: 16px; opacity: 0.8;">On Next Round</div>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 70px 40px; border-radius: 24px; backdrop-filter: blur(10px); border: 3px solid rgba(166, 200, 213, 0.5);">
+                    <div style="font-size: 88px; font-weight: 800; color: var(--dataflow-blue); margin-bottom: 24px; line-height: 1;">18</div>
+                    <div style="font-size: 24px; opacity: 0.95; font-weight: 600; margin-bottom: 8px;">Months</div>
+                    <div style="font-size: 16px; opacity: 0.8;">Runway to Series A</div>
+                </div>
+            </div>
+
+            <!-- Use of Funds -->
+            <div style="background: rgba(255,255,255,0.15); padding: 60px; border-radius: 24px; backdrop-filter: blur(10px); margin-bottom: 60px;">
+                <h3 style="color: white; text-align: center; font-size: 40px; margin-bottom: 60px; font-weight: 700;">Use of Funds</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px;">
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div style="width: 90px; height: 90px; background: var(--core-reactor); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="code" size="44"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 48px; font-weight: 800; margin-bottom: 8px; color: var(--mint-node);">40%</div>
+                            <div style="font-size: 20px; opacity: 0.95; font-weight: 600; margin-bottom: 4px;">Product Development</div>
+                            <div style="font-size: 18px; opacity: 0.75;">$2.0M</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div style="width: 90px; height: 90px; background: var(--solar-pulse); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="megaphone" size="44"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 48px; font-weight: 800; margin-bottom: 8px; color: var(--mint-node);">35%</div>
+                            <div style="font-size: 20px; opacity: 0.95; font-weight: 600; margin-bottom: 4px;">Sales & Marketing</div>
+                            <div style="font-size: 18px; opacity: 0.75;">$1.75M</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div style="width: 90px; height: 90px; background: var(--neural-drift); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="server" size="44"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 48px; font-weight: 800; margin-bottom: 8px; color: var(--mint-node);">15%</div>
+                            <div style="font-size: 20px; opacity: 0.95; font-weight: 600; margin-bottom: 4px;">Operations</div>
+                            <div style="font-size: 18px; opacity: 0.75;">$750K</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div style="width: 90px; height: 90px; background: var(--verdant-code); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <i data-lucide="wallet" size="44"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 48px; font-weight: 800; margin-bottom: 8px; color: var(--mint-node);">10%</div>
+                            <div style="font-size: 20px; opacity: 0.95; font-weight: 600; margin-bottom: 4px;">Working Capital</div>
+                            <div style="font-size: 18px; opacity: 0.75;">$500K</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Slide 6: Traction -->
-        <section class="slide" id="slide-6">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">Market Traction</h2>
-                    <div class="slide-subtitle">Strong validation from enterprise customers</div>
+            <!-- Investment Highlights -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 45px 35px; border-radius: 20px; backdrop-filter: blur(10px); text-align: center;">
+                    <i data-lucide="target" size="52" style="margin-bottom: 24px; color: var(--mint-node);"></i>
+                    <h4 style="font-size: 24px; margin-bottom: 16px; color: white; font-weight: 700;">The Market</h4>
+                    <p style="font-size: 18px; opacity: 0.9; line-height: 1.7;">$7.4B market growing to $47B by 2030 at 45% CAGR</p>
                 </div>
-                
-                <div class="status-badge">
-                    <i data-lucide="rocket"></i>
-                    <span>Late Beta - Ready for Launch</span>
+                <div style="background: rgba(255,255,255,0.1); padding: 45px 35px; border-radius: 20px; backdrop-filter: blur(10px); text-align: center;">
+                    <i data-lucide="trending-up" size="52" style="margin-bottom: 24px; color: var(--solar-pulse);"></i>
+                    <h4 style="font-size: 24px; margin-bottom: 16px; color: white; font-weight: 700;">The Traction</h4>
+                    <p style="font-size: 18px; opacity: 0.9; line-height: 1.7;">Platform ready, partnerships closing, $5-7M Y1 ARR target</p>
                 </div>
-                
-                <div class="traction-grid">
-                    <div class="traction-card">
-                        <div class="traction-number">3</div>
-                        <div class="traction-label">Enterprise Pilots</div>
-                        <div class="traction-detail">Fortune 500 & Large Enterprises</div>
-                    </div>
-                    
-                    <div class="traction-card">
-                        <div class="traction-number">10+</div>
-                        <div class="traction-label">Mid-Size Businesses</div>
-                        <div class="traction-detail">Active Beta Users</div>
-                    </div>
-                    
-                    <div class="traction-card">
-                        <div class="traction-number">123</div>
-                        <div class="traction-label">Waitlist Companies</div>
-                        <div class="traction-detail">Strong Demand Signal</div>
-                    </div>
-                    
-                    <div class="traction-card highlight">
-                        <div class="traction-number">67%</div>
-                        <div class="traction-label">Accuracy Improvement</div>
-                        <div class="traction-detail">With AIM Technology</div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-box">
-                    <i data-lucide="quote"></i>
-                    <p>"Helium AI's memory capability is a game-changer. Our team's productivity increased by 40% in the first month."</p>
-                    <span>— Enterprise Pilot Customer</span>
-                </div>
-                
-                <div class="market-timing-box">
-                    <div class="timing-stat">
-                        <div class="timing-value">$7.9B</div>
-                        <div class="timing-label">2025 Market</div>
-                    </div>
-                    <div class="timing-stat">
-                        <div class="timing-value">45.8%</div>
-                        <div class="timing-label">Annual Growth</div>
-                    </div>
-                    <div class="timing-stat">
-                        <div class="timing-value">85%</div>
-                        <div class="timing-label">Enterprise Adoption</div>
-                    </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 45px 35px; border-radius: 20px; backdrop-filter: blur(10px); text-align: center;">
+                    <i data-lucide="award" size="52" style="margin-bottom: 24px; color: var(--dataflow-blue);"></i>
+                    <h4 style="font-size: 24px; margin-bottom: 16px; color: white; font-weight: 700;">The Exit</h4>
+                    <p style="font-size: 18px; opacity: 0.9; line-height: 1.7;">36-40 months to acquisition or IPO, $500M+ target</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Slide 7: Use of Funds -->
-        <section class="slide" id="slide-7">
-            <div class="slide-content">
-                <div class="slide-header">
-                    <h2 class="slide-title">Use of Funds</h2>
-                    <div class="slide-subtitle">Strategic allocation for rapid growth</div>
-                </div>
-                
-                <div class="funding-summary">
-                    <div class="funding-stat">
-                        <div class="stat-label">Raising</div>
-                        <div class="stat-value">$2M USD</div>
-                    </div>
-                    <div class="funding-stat committed">
-                        <div class="stat-label">Committed</div>
-                        <div class="stat-value">$500K</div>
-                    </div>
-                </div>
-                
-                <div class="allocation-container">
-                    <div class="allocation-item">
-                        <div class="allocation-header">
-                            <div class="allocation-title">
-                                <i data-lucide="code"></i>
-                                <span>Product Development</span>
-                            </div>
-                            <div class="allocation-percent">40%</div>
-                        </div>
-                        <div class="allocation-amount">$800K</div>
-                        <ul class="allocation-list">
-                            <li>AIM technology enhancement</li>
-                            <li>Enterprise features & security</li>
-                            <li>API ecosystem expansion</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="allocation-item">
-                        <div class="allocation-header">
-                            <div class="allocation-title">
-                                <i data-lucide="megaphone"></i>
-                                <span>Sales & Marketing</span>
-                            </div>
-                            <div class="allocation-percent">30%</div>
-                        </div>
-                        <div class="allocation-amount">$600K</div>
-                        <ul class="allocation-list">
-                            <li>Enterprise sales team</li>
-                            <li>Marketing campaigns</li>
-                            <li>Customer success & partnerships</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="allocation-item">
-                        <div class="allocation-header">
-                            <div class="allocation-title">
-                                <i data-lucide="users"></i>
-                                <span>Team Expansion</span>
-                            </div>
-                            <div class="allocation-percent">20%</div>
-                        </div>
-                        <div class="allocation-amount">$400K</div>
-                        <ul class="allocation-list">
-                            <li>Engineering & sales hires</li>
-                            <li>Customer support team</li>
-                            <li>Operations expansion</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="allocation-item">
-                        <div class="allocation-header">
-                            <div class="allocation-title">
-                                <i data-lucide="settings"></i>
-                                <span>Operations</span>
-                            </div>
-                            <div class="allocation-percent">10%</div>
-                        </div>
-                        <div class="allocation-amount">$200K</div>
-                        <ul class="allocation-list">
-                            <li>Infrastructure scaling</li>
-                            <li>Legal & compliance</li>
-                            <li>Working capital</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="milestones-section">
-                    <h4><i data-lucide="flag"></i> Quarterly Milestones</h4>
-                    <div class="milestone-grid">
-                        <div class="milestone-item">
-                            <div class="milestone-quarter">Q4 2025</div>
-                            <div class="milestone-goal">Public launch + 50 customers</div>
-                        </div>
-                        <div class="milestone-item">
-                            <div class="milestone-quarter">Q1 2026</div>
-                            <div class="milestone-goal">$500K ARR + 10 enterprise</div>
-                        </div>
-                        <div class="milestone-item">
-                            <div class="milestone-quarter">Q2 2026</div>
-                            <div class="milestone-goal">$1.5M ARR + Series A ready</div>
-                        </div>
-                        <div class="milestone-item">
-                            <div class="milestone-quarter">Q3 2026</div>
-                            <div class="milestone-goal">$3M ARR + Market leader</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Contact Information -->
+            <div style="text-align: center; padding: 50px; background: rgba(255,255,255,0.15); border-radius: 24px; backdrop-filter: blur(10px);">
+                <p style="font-size: 22px; margin-bottom: 20px; opacity: 0.85; font-weight: 500;">Ready to discuss?</p>
+                <p style="font-size: 36px; font-weight: 800; margin-bottom: 16px;">Aniket Tapre</p>
+                <p style="font-size: 22px; opacity: 0.9; margin-bottom: 12px; font-weight: 500;">Founder & CEO, Neural Arc Inc.</p>
+                <p style="font-size: 20px; opacity: 0.85;">he2.ai | info.he2.ai</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Slide 8: Closing -->
-        <section class="slide slide-closing" id="slide-8">
-            <div class="slide-content">
-                <div class="closing-header">
-                    <i data-lucide="sparkles"></i>
-                    <h2>Join Us in Building the Future of AI</h2>
-                    <p class="closing-tagline">Where every interaction makes AI smarter</p>
-                </div>
-                
-                <div class="highlights-grid">
-                    <div class="highlight-item">
-                        <i data-lucide="trophy"></i>
-                        <h4>First-Mover Advantage</h4>
-                        <p>Only AI platform with persistent memory</p>
-                    </div>
-                    <div class="highlight-item">
-                        <i data-lucide="trending-up"></i>
-                        <h4>Massive Market</h4>
-                        <p>$50B opportunity by 2030</p>
-                    </div>
-                    <div class="highlight-item">
-                        <i data-lucide="check-circle"></i>
-                        <h4>Proven Traction</h4>
-                        <p>3 pilots, 123 waitlisted</p>
-                    </div>
-                    <div class="highlight-item">
-                        <i data-lucide="zap"></i>
-                        <h4>Clear Path to Scale</h4>
-                        <p>$2M to $25M ARR in 36 months</p>
-                    </div>
-                </div>
-                
-                <div class="investment-box">
-                    <h3>Investment Opportunity</h3>
-                    <div class="investment-details">
-                        <div class="investment-item">
-                            <div class="investment-label">Raising</div>
-                            <div class="investment-value">$2M USD</div>
-                        </div>
-                        <div class="investment-item">
-                            <div class="investment-label">Committed</div>
-                            <div class="investment-value">$500K</div>
-                        </div>
-                        <div class="investment-item">
-                            <div class="investment-label">Available</div>
-                            <div class="investment-value">$1.5M</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-section">
-                    <h4>Let's Connect</h4>
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <i data-lucide="mail"></i>
-                            <span>investors@neuralarc.ai</span>
-                        </div>
-                        <div class="contact-item">
-                            <i data-lucide="globe"></i>
-                            <span>neuralarc.ai</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-logo-container">
-                    <img src="../Neural Arc logo black.png" alt="Neural Arc" class="footer-logo">
-                </div>
-            </div>
-        </section>
-    </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-    <!-- Navigation -->
-    <div class="navigation">
-        <button class="nav-btn" id="prevBtn" aria-label="Previous slide">
-            <i data-lucide="chevron-left"></i>
-        </button>
-        <div class="slide-indicator" id="slideIndicator"></div>
-        <button class="nav-btn" id="nextBtn" aria-label="Next slide">
-            <i data-lucide="chevron-right"></i>
-        </button>
-    </div>
+        // Navigation dots
+        const slides = document.querySelectorAll('.slide');
+        const nav = document.getElementById('nav');
+        
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            dot.addEventListener('click', () => {
+                slide.scrollIntoView({ behavior: 'smooth' });
+            });
+            nav.appendChild(dot);
+        });
 
-    <script src="script.js"></script>
+        // Update active dot on scroll
+        const updateActiveDot = () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                const dot = nav.children[index];
+                
+                if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', updateActiveDot);
+        updateActiveDot();
+
+        // Keyboard navigation
+        let currentSlide = 0;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                currentSlide = 0;
+                slides[0].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                currentSlide = slides.length - 1;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Update current slide on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+                if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+                    currentSlide = index;
+                }
+            });
+        });
+
+        // Market Growth Chart
+        const marketCtx = document.getElementById('marketChart');
+        if (marketCtx) {
+            new Chart(marketCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
+                    datasets: [{
+                        label: 'AI Agent Market Size ($B)',
+                        data: [7.4, 10.7, 15.5, 22.5, 32.6, 47.0],
+                        borderColor: '#E0693D',
+                        backgroundColor: 'rgba(224, 105, 61, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'AI Agent Market Growth (45% CAGR)',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Revenue Projections Chart
+        const revenueCtx = document.getElementById('revenueChart');
+        if (revenueCtx) {
+            new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2026 (Year 1)', '2027 (Year 2)', '2028 (Year 3)'],
+                    datasets: [
+                        {
+                            label: 'Conservative',
+                            data: [5.5, 12.8, 21.2],
+                            backgroundColor: '#A6C8D5'
+                        },
+                        {
+                            label: 'Optimistic',
+                            data: [7.5, 18.8, 29.2],
+                            backgroundColor: '#E0693D'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Helium Revenue Projections (ARR in $M)',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Financial Metrics Chart
+        const financialCtx = document.getElementById('financialChart');
+        if (financialCtx) {
+            new Chart(financialCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2026', '2027', '2028'],
+                    datasets: [
+                        {
+                            label: 'ARR ($M)',
+                            data: [6.5, 15.8, 25.2],
+                            borderColor: '#E0693D',
+                            backgroundColor: 'rgba(224, 105, 61, 0.1)',
+                            yAxisID: 'y',
+                        },
+                        {
+                            label: 'Gross Margin (%)',
+                            data: [65, 72, 78],
+                            borderColor: '#D0EF5E',
+                            backgroundColor: 'rgba(208, 239, 94, 0.1)',
+                            yAxisID: 'y1',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Revenue & Margin Growth',
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'M';
+                                }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
-</html>
